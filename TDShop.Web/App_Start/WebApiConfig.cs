@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace TDShop.Web
 {
@@ -16,8 +13,9 @@ namespace TDShop.Web
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "API/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
+
             );
         }
     }

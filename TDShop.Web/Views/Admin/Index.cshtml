@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="myModule">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/plugin/angular/angular.js"></script>
+    <script src="~/Scripts/spa/app.js"></script>
+</head>
+<body>
+    <div ng-controller="schoolController">
+        <td-shop-directive></td-shop-directive>
+        <input type="number" ng-model="num" />
+        <button ng-click="checkNumber()">click to show</button>
+        <br />
+        {{message}}
+    </div>
+   
+
+</body>
+</html>
