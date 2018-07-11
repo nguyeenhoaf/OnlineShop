@@ -235,7 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.js" />
-    <Content Include="App\Components\home\abcController.js" />
+    <Content Include="App\Components\home\homeController.js" />
     <Content Include="App\Components\home\homeView.html" />
     <Content Include="App\Components\products\productAddController.js" />
     <Content Include="App\Components\products\productAddView.html" />

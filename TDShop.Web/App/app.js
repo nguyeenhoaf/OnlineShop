@@ -13,7 +13,7 @@
         $stateProvider.state('home', {
             url: "/admin",
             templateUrl: "/App/Components/home/homeView.html",
-            controller: "abcController"
+            controller: "homeController"
         });
         $urlRouterProvider.otherwise('/admin');
     }

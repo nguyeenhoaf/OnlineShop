@@ -1,7 +1,7 @@
 ﻿(function (app) {
-    app.controller('abcController', abcController);
+    app.controller('homeController', homeController);
 
-    function abcController() {
+    function homeController() {
         console.log("Hello from category");
     }
 })(angular.module('tdshop'));
