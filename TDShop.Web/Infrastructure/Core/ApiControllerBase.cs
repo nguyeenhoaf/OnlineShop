@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TDShop.Service;
-using TeduShop.Model.Models;
+using TDShop.Model.Models;
 
 namespace TDShop.Web.Infrastructure.Core
 {

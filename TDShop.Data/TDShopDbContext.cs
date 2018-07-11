@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.CSharp.RuntimeBinder;
 using System.Data.Entity;
-using System.Reflection;
 using TDShop.Model.Models;
-using TeduShop.Model.Models;
 
 namespace TDShop.Data
 {
@@ -44,7 +41,6 @@ namespace TDShop.Data
         {
             modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
             modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
-            
         }
     }
 }

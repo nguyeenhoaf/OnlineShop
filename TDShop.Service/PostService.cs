@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TDShop.Data.Infrastructure;
 using TDShop.Data.Repositories;
-using TeduShop.Model.Models;
+using TDShop.Model.Models;
 
 namespace TDShop.Service
 {

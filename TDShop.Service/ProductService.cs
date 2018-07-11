@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TDShop.Data.Infrastructure;
 using TDShop.Data.Repositories;
-using TeduShop.Model.Models;
+using TDShop.Model.Models;
 
 namespace TDShop.Service
 {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using TDShop.Model.Abstract;
 
-namespace TeduShop.Model.Models
+namespace TDShop.Model.Models
 {
     [Table("Pages")]
     public class Page : Auditable

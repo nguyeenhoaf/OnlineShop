@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using TDShop.Web.Models;
-using TeduShop.Model.Models;
+using TDShop.Model.Models;
 
 namespace TDShop.Web.Infrastructure.Extensions
 {

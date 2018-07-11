@@ -14,6 +14,7 @@ using TDShop.Data.Infrastructure;
 using TDShop.Data.Repositories;
 using TDShop.Model.Models;
 using TDShop.Service;
+using TDShop.Web.Mappings;
 
 [assembly: OwinStartup(typeof(TDShop.Web.App_Start.Startup))]
 
@@ -34,12 +35,10 @@ namespace TDShop.Web.App_Start
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly()); //Register WebApi Controllers
-
             builder.RegisterType<UnitofWork>().As<IUnitofWork>().InstancePerRequest();
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
-
             builder.RegisterType<TDShopDbContext>().AsSelf().InstancePerRequest();
-
+            //builder.RegisterType<AutoMapperConfiguration>().AsSelf().InstancePerRequest();
             //Asp.net Identity
 
             builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();

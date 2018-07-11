@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using TDShop.Web.Models;
-using TeduShop.Model.Models;
+using TDShop.Model.Models;
 
 namespace TDShop.Web.Mappings
 {
@@ -16,17 +12,27 @@ namespace TDShop.Web.Mappings
 
         public static void Configure()
         {
+           
             var mapperConfig = new MapperConfiguration(config =>
             {
-                config.CreateMap<Post, PostViewModel>();
-                config.CreateMap<PostViewModel, Post>();
                 config.CreateMap<Tag, TagViewModel>();
                 config.CreateMap<TagViewModel, Tag>();
+                //Post Mapper
+                config.CreateMap<Post, PostViewModel>();
+                config.CreateMap<PostViewModel, Post>();               
                 config.CreateMap<PostTag, PostTagViewModel>();
                 config.CreateMap<PostTagViewModel, PostTag>();
                 config.CreateMap<PostCategoryViewModel, PostCategory>();
+                config.CreateMap<PostCategory, PostCategoryViewModel>();
+                //Product Mapper
+                config.CreateMap<Product, ProductViewModel>();
+                config.CreateMap<ProductViewModel, Product>();
+                config.CreateMap<ProductTag, ProductTagViewModel>();
+                config.CreateMap<ProductTagViewModel, ProductTag>();
+                config.CreateMap<ProductCategoryViewModel, ProductCategory>();
+                config.CreateMap<ProductCategory, ProductCategoryViewModel>();
             });
-            _mapper=mapperConfig.CreateMapper();
+            _mapper = mapperConfig.CreateMapper();
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿
 using System.Collections.Generic;
 using TDShop.Data.Infrastructure;
-using TeduShop.Model.Models;
 using System.Linq;
+using TDShop.Model.Models;
+
 namespace TDShop.Data.Repositories
 {
     public interface IPostRepository:IRepository<Post>

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeduShop.Model.Models
+namespace TDShop.Model.Models
 {
     [Table("ContactDetails")]
     public class ContactDetail

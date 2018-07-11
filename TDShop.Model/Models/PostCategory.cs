@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TDShop.Model.Abstract;
 
-namespace TeduShop.Model.Models
+namespace TDShop.Model.Models
 {
     [Table("PostCategories")]
     public class PostCategory : Auditable

@@ -1,25 +1,22 @@
-﻿using AutoMapper;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using TeduShop.Model.Models;
-using TDShop.Web.Infrastructure.Core;
 using TDShop.Service;
-using TDShop.Web.Models;
+using TDShop.Web.Infrastructure.Core;
 using TDShop.Web.Mappings;
+using TDShop.Web.Models;
 
 namespace TeduShop.Web.Api
 {
     [RoutePrefix("API/PostCategory")]
     public class PostCategoryController : ApiControllerBase
     {
-        IPostCategoryService _postCategoryService;
+        private IPostCategoryService _postCategoryService;
 
         public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) :
             base(errorService)
         {
-
             this._postCategoryService = postCategoryService;
         }
 
