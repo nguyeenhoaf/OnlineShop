@@ -7,12 +7,13 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-
     <link href="~/Assets/admin/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <link href="~/Assets/admin/libs/toastr/toastr.css" rel="stylesheet" />
     <!-- Theme style -->
     <link rel="stylesheet" href="/Assets/admin/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -521,14 +522,18 @@
     <!-- Begin embed angularJS -->
     <script src="~/Assets/admin/libs/angular/angular.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="~/Assets/admin/libs/toastr/toastr.js"></script>
     <script src="~/App/Shared/modules/tdshop.common.js"></script>
     <script src="~/App/Shared/filter/statusFilter.js"></script>
     <script src="~/App/Shared/services/apiService.js"></script>
+
+    <script src="~/App/Shared/services/notificationService.js"></script>
     <script src="~/App/Shared/directives/pagerDirective.js"></script>
     <script src="~/App/Components/products/products.module.js"></script>
     <script src="~/App/app.js"></script>
     <script src="~/App/Components/product_categories/productCategory.module.js"></script>
     <script src="~/App/Components/product_categories/productCategoryListController.js"></script>
+    <script src="~/App/Components/product_categories/productCategoryAddController.js"></script>
     <script src="~/App/Components/products/productAddController.js"></script>
     <script src="~/App/Components/products/productListController.js"></script>
     <script src="~/App/components/home/homeController.js"></script>

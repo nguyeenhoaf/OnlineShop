@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TDShop.Model.Models;
 using TDShop.Service;
 using TDShop.Web.Infrastructure.Core;
 using TDShop.Web.Mappings;
@@ -40,6 +41,46 @@ namespace TDShop.Web.Api
                     TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
                 };
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+
+                return response;
+            });
+        }
+        [Route("getallparents")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _productCategoryService.GetAll();
+
+                var responseData = AutoMapperConfiguration.Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+        [Route("create")]
+        [HttpPost]
+        [AllowAnonymous]
+        public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var newProductCategory = new ProductCategory();
+                    newProductCategory = AutoMapperConfiguration.Mapper.Map<ProductCategoryViewModel, ProductCategory>(productCategoryVm);
+                    _productCategoryService.Add(newProductCategory);
+                    _productCategoryService.SaveChanges();
+
+                    var responseData = AutoMapperConfiguration.Mapper.Map<ProductCategory, ProductCategoryViewModel>(newProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
 
                 return response;
             });
