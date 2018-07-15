@@ -1,18 +1,18 @@
 ﻿/// <reference path="../../../assets/admin/libs/angular/angular.js" />
 (function (app) {
     app.controller('productCategoryAddController', productCategoryAddController);
-    productCategoryAddController.$inject = ['apiService', '$scope', 'notificationService', '$state'];
-    function productCategoryAddController(apiService, $scope, notificationService, $state) {
+    productCategoryAddController.$inject = ['apiService', '$scope', 'notificationService', '$state', 'commonService'];
+    function productCategoryAddController(apiService, $scope, notificationService, $state, commonService) {
         $scope.productCategory = {
             CreatedDate: new Date(),
             Status: true,
-            Name: "Danh mục 1"
+            Name: ""
         }
-
         $scope.AddProductCategory = AddProductCategory;
-
-        function AddProductCategory() {
-            
+        $scope.$watch('productCategory.Name', function () {
+            $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
+        });
+        function AddProductCategory() {          
             apiService.post('/Api/ProductCategory/create', $scope.productCategory,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
@@ -27,8 +27,10 @@
             }, function () {
                 console.log('Cannot get list parent');
             });
-        }
-        
+        }      
         loadParentCategory();
+
+
+
     }
 })(angular.module('tdshop.product_categories'))
