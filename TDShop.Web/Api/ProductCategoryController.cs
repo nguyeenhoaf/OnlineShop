@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 using TDShop.Model.Models;
 using TDShop.Service;
 using TDShop.Web.Infrastructure.Core;
@@ -127,7 +128,6 @@ namespace TDShop.Web.Api
                 return response;
             });
         }
-
         [Route("delete")]
         [HttpDelete]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
@@ -147,6 +147,34 @@ namespace TDShop.Web.Api
 
                     var responseData = AutoMapperConfiguration.Mapper.Map<ProductCategory, ProductCategoryViewModel>(newProductCategory);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
+                return response;
+            });
+        }
+
+        [Route("deletemulti")]
+        [HttpDelete]
+        public HttpResponseMessage Delete(HttpRequestMessage request, string listID)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listid = new JavaScriptSerializer().Deserialize<List<int>>(listID);
+                    foreach(var id in listid)
+                    {
+                       _productCategoryService.Delete(id);
+                    }
+                    
+                    _productCategoryService.SaveChanges();
+
+                    response = request.CreateResponse(HttpStatusCode.OK, true);
                 }
 
                 return response;

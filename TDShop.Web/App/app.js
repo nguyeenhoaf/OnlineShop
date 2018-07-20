@@ -4,7 +4,7 @@
     angular.module('tdshop',
         ['tdshop.products',
             'tdshop.product_categories',
-            'tdshop.common'])
+            'tdshop.common', 'ngBootbox'])
         .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
