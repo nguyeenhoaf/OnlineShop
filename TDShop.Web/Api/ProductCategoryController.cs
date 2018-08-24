@@ -14,6 +14,7 @@ using TDShop.Web.Models;
 namespace TDShop.Web.Api
 {
     [RoutePrefix("API/ProductCategory")]
+    [Authorize]
     public class ProductCategoryController : ApiControllerBase
     {
         private IProductCategoryService _productCategoryService;

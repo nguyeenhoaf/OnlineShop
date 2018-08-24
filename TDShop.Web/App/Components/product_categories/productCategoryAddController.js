@@ -8,6 +8,7 @@
             Status: true,
             Name: ""
         }
+       
         $scope.AddProductCategory = AddProductCategory;
         $scope.$watch('productCategory.Name', function () {
             $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);

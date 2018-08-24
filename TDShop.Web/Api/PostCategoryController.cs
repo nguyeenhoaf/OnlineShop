@@ -10,6 +10,7 @@ using TDShop.Web.Models;
 namespace TeduShop.Web.Api
 {
     [RoutePrefix("API/PostCategory")]
+    [Authorize]
     public class PostCategoryController : ApiControllerBase
     {
         private IPostCategoryService _postCategoryService;

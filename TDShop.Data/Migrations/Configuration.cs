@@ -18,7 +18,7 @@ namespace TDShop.Data.Migrations
         protected override void Seed(TDShopDbContext context)
         {
             CreateProductCategorySample(context);
-            //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new TDShopDbContext()));
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new TDShopDbContext()));
 
             //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new TDShopDbContext()));
 

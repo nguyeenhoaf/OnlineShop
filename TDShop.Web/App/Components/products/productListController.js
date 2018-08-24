@@ -1,7 +1,107 @@
 ﻿(function (app) {
     app.controller('productListController', productListController);
+    productListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter'];
 
-    function productListController() {
-        console.log("Hello form product");
+    function productListController($scope, apiService, notificationService, $ngBootbox, $filter) {
+        //Property
+        $scope.products = [];
+        $scope.firstFlag = true;
+        $scope.page = 0;
+        $scope.pagesCount = 0;
+        $scope.keyword = '';
+        $scope.isAll = false;
+
+        //Event
+        $scope.$watch("products", function (n, o) {
+            var checked = $filter("filter")(n, { checked: true });
+            if (checked.length) {
+                $scope.selected = checked;
+                $('#btnDelete').removeAttr('disabled');
+            } else {
+                $('#btnDelete').attr('disabled', 'disabled');
+            }
+        }, true);
+        //Method
+        $scope.selectAll = function () {
+            if ($scope.isAll == false) {
+                angular.forEach($scope.products, function (item) {
+                    item.checked = true;
+                });
+                $scope.isAll = true;
+            }
+            else {
+                angular.forEach($scope.products, function (item) {
+                    item.checked = false;
+                });
+                $scope.isAll = false;
+            }
+        }
+        $scope.deleteMulti = function () {
+            var listID = [];
+            $.each($scope.selected, function (i, item) {
+                listID.push(item.ID);
+            });
+            var config = {
+                params: {
+                    listID: JSON.stringify(listID)
+                }
+            }
+            apiService.del('/Api/Product/deletemulti', config, function () {
+                notificationService.displaySuccess('Xóa thành công');
+                search();
+            }, function () {
+                notificationService.displayError('Xóa không thành công');
+            });
+        }
+        $scope.getProducts = getProducts;
+        $scope.search = search;
+        function search() {
+            getProducts();
+        }
+        $scope.DeleteProduct = DeleteProduct;
+        function DeleteProduct(id) {
+            $ngBootbox.confirm("Bạn có chắc chắn muốn xóa ?").then(function () {
+                var config = {
+                    params: {
+                        id: id
+                    }
+                }
+                apiService.del('/Api/Product/delete', config, function (result) {
+                    notificationService.displaySuccess('Xóa thành công');
+                    search();
+                }, function (error) {
+                    notificationService.displayError('Xóa không thành công');
+                });
+            });
+        }
+        function getProducts(page, keyword) {
+            var page = page || 0;
+            var config = {
+                params: {
+                    keyword: $scope.keyword,
+                    page: page,
+                    pageSize: 2
+                }
+            }
+            apiService.get('/API/Product/getall', config, function (result) {
+                if (result.data.TotalCount == 0 && $scope.page == 0) {
+                    notificationService.displayWarning("Không tìm thấy bản ghi nào !!");
+                }
+                else {
+                    if ($scope.page == 0 && $scope.firstFlag) {
+                        notificationService.displaySuccess("Tìm được " + result.data.TotalCount + " bản ghi");
+                        $scope.firstFlag = false;
+                    }
+
+                }
+                $scope.products = result.data.Items;
+                $scope.page = result.data.Page;
+                $scope.pagesCount = result.data.TotalPages;
+                $scope.totalCount = result.data.TotalCount;
+            }, function () {
+                console.log('Load productcategory failed.');
+            });
+        }
+        $scope.getProducts();
     }
 })(angular.module('tdshop.products'));

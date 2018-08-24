@@ -25,7 +25,7 @@
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-maxlength="256" required name="name" ng-model="productCategory.Name">
                         <label ng-show="frmAddProductCategory.name.$invalid" style="color:red">Phải nhập tên danh mục</label>
-                        <label ng-show="frmAddProductCategory.name.$error.maxlength" style="color:red">Độ dài lớn nhất 2</label>
+                        <label ng-show="frmAddProductCategory.name.$error.maxlength" style="color:red">Độ dài lớn nhất 256</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -40,7 +40,7 @@
                     <label for="inputEmail3" class="col-sm-2 ">Mô tả ngắn</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-maxlength="256" name="description" ng-model="productCategory.Description">
-                        <label ng-show="frmAddProductCategory.description.$error.maxlength" style="color:red">Độ dài lớn nhất 2</label>
+                        <label ng-show="frmAddProductCategory.description.$error.maxlength" style="color:red">Độ dài lớn nhất 256</label>
                     </div>
                 </div>
                 <div class="form-group">
