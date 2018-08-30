@@ -28,5 +28,6 @@ namespace TDShop.Model.Models
         public bool Status { set; get; }
 
         public string Content { set; get; }
+
     }
 }

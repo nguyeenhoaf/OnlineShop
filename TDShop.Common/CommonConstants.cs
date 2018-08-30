@@ -10,5 +10,6 @@ namespace TDShop.Common
     {
         public static string ProductTag = "product";
         public static string PostTag = "post";
+        public static string DefaultFooterId = "default";
     }
 }

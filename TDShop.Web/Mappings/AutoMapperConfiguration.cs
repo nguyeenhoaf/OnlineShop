@@ -31,6 +31,12 @@ namespace TDShop.Web.Mappings
                 config.CreateMap<ProductTagViewModel, ProductTag>();
                 config.CreateMap<ProductCategoryViewModel, ProductCategory>();
                 config.CreateMap<ProductCategory, ProductCategoryViewModel>();
+                //Footer
+                config.CreateMap<Footer, FooterViewModel>();
+                config.CreateMap<FooterViewModel, Footer>();
+                //Slide
+                config.CreateMap<Slide, SlideViewModel>();
+                config.CreateMap<SlideViewModel, Slide>();
             });
             _mapper = mapperConfig.CreateMapper();
         }

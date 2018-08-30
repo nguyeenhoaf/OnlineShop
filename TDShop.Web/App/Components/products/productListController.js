@@ -80,7 +80,7 @@
                 params: {
                     keyword: $scope.keyword,
                     page: page,
-                    pageSize: 2
+                    pageSize: 10
                 }
             }
             apiService.get('/API/Product/getall', config, function (result) {
