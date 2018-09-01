@@ -32,6 +32,12 @@ namespace TDShop.Service
 
         IEnumerable<Product> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
 
+        IEnumerable<Product> GetProductsByCategoryIdPaging(int CategoryID, int page, int pageSize, out int totalRow, string sortType);
+
+        IEnumerable<Product> Search(string keyword, int page, int pageSize, out int totalRow, string sortType);
+
+        IEnumerable<string> GetProductsByName(string name);
+
         void SaveChanges();
     }
     public class ProductService : IProductService
@@ -120,9 +126,57 @@ namespace TDShop.Service
             return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
+        public IEnumerable<Product> GetProductsByCategoryIdPaging(int CategoryID, int page, int pageSize, out int totalRow, string sortType)
+        {
+            
+            var query = _productRepository.GetMulti(x => x.Status && x.CategoryID == CategoryID);
+            switch (sortType)
+            {
+                case "popular": query=query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "discount": query=query.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    break;
+                case "price": query=query.OrderBy(x => x.Price);
+                    break;
+                default:
+                        query=query.OrderByDescending(x => x.CreatedDate);
+                        break;
+            }
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<string> GetProductsByName(string name)
+        {
+            return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y => y.Name);
+        }
+
         public void SaveChanges()
         {
             _unitofWork.Commit();
+        }
+
+        public IEnumerable<Product> Search(string keyword, int page, int pageSize, out int totalRow, string sortType)
+        {
+
+            var query = _productRepository.GetMulti(x => x.Status && x.Name == keyword);
+            switch (sortType)
+            {
+                case "popular":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "discount":
+                    query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    break;
+                case "price":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                default:
+                    query = query.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public void Update(Product product)

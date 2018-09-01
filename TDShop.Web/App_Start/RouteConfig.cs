@@ -15,20 +15,20 @@ namespace TDShop.Web
 
             routes.MapRoute(
                name: "About",
-               url: "gioi-thieu.html",
+               url: "gioi-thieu",
                defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
                namespaces: new[] { "TDShop.Web.Controllers" }
             );
 
             routes.MapRoute(
                name: "Login",
-               url: "dang-nhap.html",
+               url: "dang-nhap",
                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
                namespaces: new[] { "TDShop.Web.Controllers" }
             );
             routes.MapRoute(
                name: "Register",
-               url: "dang-ky.html",
+               url: "dang-ky",
                defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
                namespaces: new[] { "TDShop.Web.Controllers" }
             );
@@ -39,14 +39,20 @@ namespace TDShop.Web
                 namespaces: new[] { "TDShop.Web.Controllers" }
             );
             routes.MapRoute(
+                name: "Tìm kiếm",
+                url: "tim-kiem",
+                defaults: new { controller = "Product", action = "Search", id = UrlParameter.Optional },
+                namespaces: new[] { "TDShop.Web.Controllers" }
+            );
+            routes.MapRoute(
                 name: "Product",
-                url: "{alias}.p-{id}.html",
+                url: "{alias}.p-{id}",
                 defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
                 namespaces: new[] { "TDShop.Web.Controllers" }
             );
             routes.MapRoute(
                  name: "Product Category",
-                 url: "{alias}.pc-{id}.html",
+                 url: "{alias}.pc-{id}",
                  defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },
                    namespaces: new string[] { "TDShop.Web.Controllers" }
              );

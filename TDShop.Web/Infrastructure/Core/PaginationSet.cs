@@ -17,6 +17,8 @@ namespace TDShop.Web.Infrastructure.Core
 
         public int TotalPages { get; set; }
         public int TotalCount { get; set; }
+        //Số trang hiển thị
+        public int MaxPage { get; set; }
         public IEnumerable<T> Items { get; set; }
     }
 }

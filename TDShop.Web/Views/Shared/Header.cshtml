@@ -42,14 +42,17 @@
                     <a href="index.html"><img src="/Assets/client/images/logo.png" alt=" " /></a>
                 </div>
                 <div class="search">
-                    <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-                    <input type="submit" value="SEARCH">
+                    <form method="get" action="/tim-kiem">
+                        <input type="text" name="keyword" id="txtKeyword" placeholder="Từ khóa">
+                        <input type="submit" value="Tìm kiếm" id="btnKeyword">
+                    </form>
+                    
 
                 </div>
                 <div class="clearfix"> </div>
             </div>
             <div class="header-bottom-right">
-                <div class="account"><a href="tai-khoan.html"><span> </span>THÔNG TIN TÀI KHOẢN</a></div>
+                <div class="account"><a href="tai-khoan.html"><span> </span>TÀI KHOẢN</a></div>
                 <ul class="login">
                     <li><a href="dang-nhap.html"><span> </span>ĐĂNG NHẬP</a></li> |
                     <li><a href="dang-ky.html">ĐĂNG KÝ</a></li>

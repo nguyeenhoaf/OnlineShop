@@ -16,6 +16,7 @@
                         accessToken: response.data.access_token,
                         userName: userName
                     };
+
                     authenticationService.setTokenInfo(userInfo);
                     authData.authenticationData.IsAuthenticated = true;
                     authData.authenticationData.userName = userName;
@@ -26,7 +27,7 @@
                     authData.authenticationData.IsAuthenticated = false;
                     authData.authenticationData.userName = "";
                     deferred.resolve(err);
-                })
+                });
                 return deferred.promise;
             }
 

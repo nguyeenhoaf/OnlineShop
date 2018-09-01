@@ -12,21 +12,20 @@
 
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state('base', {
-                url: "",
-                templateUrl: "/App/Shared/views/baseView.html",
-                abstract: true
-            })
-            .state('login', {
+            url: "",
+            templateUrl: "/App/Shared/views/baseView.html",
+            abstract: true
+        }).state('home', {
+            url: "/home",
+            parent: 'base',
+            templateUrl: "/App/Components/home/homeView.html",
+            controller: "homeController"
+        }).state('login', {
                 url: "/login",
                 templateUrl: "/App/Components/login/loginView.html",
                 controller: "loginController"
-            })
-            .state('home', {              
-                url: "/home",
-                parent:'base',
-                templateUrl: "/App/Components/home/homeView.html",
-                controller: "homeController"
             });
+            
         $urlRouterProvider.otherwise('login');
     }
     function configAuthentication($httpProvider) {
