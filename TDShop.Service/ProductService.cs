@@ -30,6 +30,8 @@ namespace TDShop.Service
 
         Product GetById(int id);
 
+        IEnumerable<Product> GetRelatedProducts(int id, int top);
+
         IEnumerable<Product> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
 
         IEnumerable<Product> GetProductsByCategoryIdPaging(int CategoryID, int page, int pageSize, out int totalRow, string sortType);
@@ -37,6 +39,12 @@ namespace TDShop.Service
         IEnumerable<Product> Search(string keyword, int page, int pageSize, out int totalRow, string sortType);
 
         IEnumerable<string> GetProductsByName(string name);
+
+        IEnumerable<Tag> GetListTagByProductId(int productId);
+
+        void IncreaseView(int id);
+
+        IEnumerable<Product> GetListProductByTagId(string tagId, int page, int pageSize, out int totalRow);
 
         void SaveChanges();
     }
@@ -126,6 +134,16 @@ namespace TDShop.Service
             return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
+        public IEnumerable<Product> GetListProductByTagId(string tagId, int page, int pageSize, out int totalRow)
+        {
+            return _productRepository.GetListProductByTag(tagId, page, pageSize,out totalRow);
+        }
+
+        public IEnumerable<Tag> GetListTagByProductId(int productId)
+        {
+            return _productTagRepository.GetMulti(x => x.ProductID == productId, new string[] { "Tag" }).Select(y => y.Tag);
+        }
+
         public IEnumerable<Product> GetProductsByCategoryIdPaging(int CategoryID, int page, int pageSize, out int totalRow, string sortType)
         {
             
@@ -149,6 +167,25 @@ namespace TDShop.Service
         public IEnumerable<string> GetProductsByName(string name)
         {
             return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y => y.Name);
+        }
+
+        public IEnumerable<Product> GetRelatedProducts(int id, int top)
+        {
+            var temp_product = _productRepository.GetSingleById(id);
+            return _productRepository.GetMulti(x => x.Status && x.CategoryID == temp_product.CategoryID).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public void IncreaseView(int id)
+        {
+            var product=_productRepository.GetSingleById(id);
+            if(product.ViewCount.HasValue)
+            {
+                product.ViewCount++;
+            }
+            else
+            {
+                product.ViewCount = 1;
+            }
         }
 
         public void SaveChanges()

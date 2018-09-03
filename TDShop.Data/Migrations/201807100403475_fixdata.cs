@@ -7,6 +7,7 @@ namespace TDShop.Data.Migrations
     {
         public override void Up()
         {
+            Sql("update dbo.Products set Quantity = 0");
         }
         
         public override void Down()

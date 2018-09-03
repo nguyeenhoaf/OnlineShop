@@ -37,6 +37,12 @@ namespace TDShop.Web.Mappings
                 //Slide
                 config.CreateMap<Slide, SlideViewModel>();
                 config.CreateMap<SlideViewModel, Slide>();
+                //Page
+                config.CreateMap<Page, PageViewModel>();
+                config.CreateMap<PageViewModel, Page>();
+                //Feedback 
+                config.CreateMap<Feedback, FeedbackViewModel>();
+                config.CreateMap<FeedbackViewModel, Feedback>();
             });
             _mapper = mapperConfig.CreateMapper();
         }
